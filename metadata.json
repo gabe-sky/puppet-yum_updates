@@ -1,11 +1,11 @@
 {
       "name": "gabe-yum_updates",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "Gabe Schuyler",
       "license": "Apache-2.0",
       "summary": "Fact to report on the number of yum_updates outstanding",
       "source": "https://github.com/gabe-sky/puppet-yum_updates",
-      "project_page": "hhttps://github.com/gabe-sky/puppet-yum_updates",
+      "project_page": "https://github.com/gabe-sky/puppet-yum_updates",
       "issues_url": "https://github.com/gabe-sky/puppet-yum_updates/issues",
       "tags": ["facter", "yum","redhat"],
       "operatingsystem_support": [
