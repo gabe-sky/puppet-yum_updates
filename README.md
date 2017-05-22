@@ -1,5 +1,35 @@
 # yum_updates
 
+
+## Class
+
+This module implements a single, very simple class, yum_upates, which you can use to periodically run `yum -y update` on some machines.  This class defaults to not actually doing anything; you will need to set its "autoupdate" parameter to true, if you actually want it to run the yum command.
+
+For instance, declare it like this, to have it run updates once per weekday.
+
+```
+class { 'yum_updates':
+  autoupdate => true,
+}
+```
+
+Alternately, you might use Hiera to decide what nodes apply updates and which ones don't.  Since the class defaults to doing, nothing, you simply need to add a single key to machines that *do* need to apply updates.  For instance, with the following yaml:
+
+```
+---
+yum_updates::autoupdate: true
+```
+
+There's a class parameter if you want to tack anything on to the end of the yum command.  The string is just tacked on, verbatim, to the command.  For instance, to leave out a repo from the update run:
+
+```
+class { 'yum_updates':
+  autoupdate => true,
+  append_to_command => '--disablerepo=epel',
+}
+```
+
+
 ## Fact
 
 This module implements a single structured fact that reports on whether a system has outstanding yum updates, and the number of updates that are outstanding.
