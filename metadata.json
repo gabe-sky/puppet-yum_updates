@@ -1,6 +1,6 @@
 {
   "name": "gabe-yum_updates",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Gabe Schuyler",
   "license": "Apache-2.0",
   "summary": "Custom Fact to report number of outstanding yum updates, and code to periodically apply them.",
