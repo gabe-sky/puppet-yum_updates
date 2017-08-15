@@ -47,7 +47,7 @@ Is an integer reflecting how many updates are outstanding.  If none are outstand
 
 #### `available`
 
-Is a boolean reflecting whether `count` indicates that more than one update is outstanding.
+Is a boolean reflecting whether `count` indicates that one or more updates is outstanding.
 
 ## Inventory Script
 
