@@ -1,9 +1,9 @@
 {
   "name": "gabe-yum_updates",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "author": "Gabe Schuyler",
   "license": "Apache-2.0",
-  "summary": "Custom Fact to report number of outstanding yum updates, and code to periodically apply them.",
+  "summary": "Custom Fact to report number of outstanding yum updates, ad hoc Tasks for cleaning and fetching updates, and code to manage a cron job to apply them.",
   "source": "https://github.com/gabe-sky/puppet-yum_updates",
   "project_page": "https://github.com/gabe-sky/puppet-yum_updates",
   "issues_url": "https://github.com/gabe-sky/puppet-yum_updates/issues",

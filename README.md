@@ -1,5 +1,37 @@
 # yum_updates
 
+## Fact
+
+This module implements a single structured fact that reports on whether a system has outstanding yum updates, and the number of updates that are outstanding.
+
+For instance, a system with eighty-two outstanding updates will report the following:
+
+    {
+      count => 82,
+      available => true
+    }
+
+### `count`
+
+Is an integer reflecting how many updates are outstanding.  If none are outstanding, it returns zero.
+
+### `available`
+
+Is a boolean reflecting whether `count` indicates that one or more updates is outstanding.
+
+
+## Tasks
+
+This module includes two tasks, for ad-hoc use with Puppet Bolt.
+
+### `clean_all`
+
+Running this tasks executes a `yum clean all` command on the target nodes.  It does not accept any parameters, and does not support noop mode.
+
+### `update_all`
+
+Running this tasks executes a `yum -y update` command on the target nodes.  It does not accept any parameters, and does not support noop mode.
+
 
 ## Class
 
@@ -29,25 +61,6 @@ class { 'yum_updates':
 }
 ```
 
-
-## Fact
-
-This module implements a single structured fact that reports on whether a system has outstanding yum updates, and the number of updates that are outstanding.
-
-For instance, a system with eighty-two outstanding updates will report the following:
-
-    {
-      count => 82,
-      available => true
-    }
-
-#### `count`
-
-Is an integer reflecting how many updates are outstanding.  If none are outstanding, it returns zero.
-
-#### `available`
-
-Is a boolean reflecting whether `count` indicates that one or more updates is outstanding.
 
 ## Inventory Script
 
