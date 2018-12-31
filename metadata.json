@@ -8,6 +8,12 @@
   "project_page": "https://github.com/gabe-sky/puppet-yum_updates",
   "issues_url": "https://github.com/gabe-sky/puppet-yum_updates/issues",
   "tags": ["facter","yum","updates","redhat"],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
     "operatingsystem":"RedHat"
