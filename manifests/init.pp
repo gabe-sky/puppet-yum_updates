@@ -37,7 +37,7 @@ class yum_updates (
     exec { "yum -y update ${append_to_command}":
       path     => $::path,
       schedule => 'Yum updates allowed',
-      timeout  => "$autoupdate_timeout",
+      timeout  => $autoupdate_timeout,
     }
   }
 
