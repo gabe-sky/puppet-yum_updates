@@ -17,16 +17,16 @@
 
 
 class yum_updates (
-  $autoupdate         = false,
-  $autoupdate_period  = 'daily',
-  $autoupdate_range   = '10-16',
-  $autoupdate_weekday = ['Mon','Tue','Wed','Thu','Fri'],
-  $autoupdate_timeout = 600,
-  $append_to_command  = '',
+  Boolean $autoupdate               = false,
+  String $autoupdate_period         = 'daily',
+  String $autoupdate_range          = '10-16',
+  Array[String] $autoupdate_weekday = ['Mon','Tue','Wed','Thu','Fri'],
+  Integer $autoupdate_timeout       = 600,
+  String $append_to_command         = '',
 ) {
 
 
-  # Optionally run a yum update once per weekday (or whatever span is passed
+  # Optionally run a yum update once per weekday (or whatever span is passed this is a really long line and it will make lint very unhappy if I have it here.
   # in as the yum_updates::autoupdate_* parameters.).
   if $autoupdate {
     schedule { 'Yum updates allowed':
@@ -37,7 +37,7 @@ class yum_updates (
     exec { "yum -y update ${append_to_command}":
       path     => $::path,
       schedule => 'Yum updates allowed',
-      timeout  => $autoupdate_timeout,
+      timeout  => "$autoupdate_timeout",
     }
   }
 
