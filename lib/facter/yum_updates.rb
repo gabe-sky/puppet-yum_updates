@@ -1,32 +1,38 @@
 # This simple custom fact uses the output of a `yum check-update` command to
-# determine whether updates are available for a system, and how many.
+# determine how many updates are available for a system.
 #
-# It returns two entries, as a structured fact.
+# It returns two values, as a structured fact.
 #
-#   yum_updates.count:  gives the count of outstanding updates as an integer
-#   yum_updates.available:  gives a boolean reflecting if updates are available
+#   yum_updates['available']: a boolean reflecting if updates are available
+#   yum_updates['count']: an integer with the count of outstanding updates
 
 Facter.add(:yum_updates) do
   confine :osfamily => 'RedHat'
 
   setcode do
 
+    # Create a hash and put in some default values.
     results = Hash.new
+    results['count'] = 0
+    results['available'] = false
 
-    # Invoke check-update to list available updates, use grep to exclude blank
-    # lines, and then count the number of remaining lines.
-    # Convert this from a string to an integer and assign it to 'count'.
-    results['count'] = Facter::Core::Execution.execute('yum check-update --quiet | grep -v "^$" | wc -l', :timeout => 30).to_i
+    # Invoke check-update to list available updates.  Turn the raw output into
+    # an array of lines.  Then inspect each line.  Wait only thirty seconds.
+    lines = Facter::Core::Execution.execute('yum check-update --quiet', :timeout => 30)
+      .split("\n")
+      .each do |line|
 
-    # If the result was greater than zero, set 'avaialble' to true, to indicate
-    # that there are outstanding updates.  Otherwise set it to false.
-    if results['count'] > 0
-      results['available'] = true
-    else
-      results['available'] = false
+      # If it looks like the line is a package name, version, and source, add
+      # one to the count, and (re)set available to true.
+      if line.match?(/^\S+\s+\d\S+\s+\S+\s*$/)
+        results['count'] += 1
+        results['available'] = true
+      end
+
     end
 
+    # Return the hash of count and available as the fact's value.
     results
-  end
 
+  end
 end
