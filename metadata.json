@@ -1,6 +1,6 @@
 {
   "name": "gabe-yum_updates",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "author": "Gabe Schuyler",
   "license": "Apache-2.0",
   "summary": "Custom Fact to report number of outstanding yum updates, ad hoc Tasks for cleaning and updating, code to automatically update.",
@@ -11,13 +11,13 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.0.0"
+      "version_requirement": ">= 4.0.0 < 7.0.0"
     }
   ],
   "operatingsystem_support": [
     {
     "operatingsystem":"RedHat",
-    "operatingsystemrelease":[ "5", "6", "7"]
+    "operatingsystemrelease":[ "5", "6", "7", "8"]
     }
   ],
   "dependencies": []
